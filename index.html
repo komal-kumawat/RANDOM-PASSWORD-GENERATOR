@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>RANDOM PASSWORD GENERATOR</title>
+</head>
+
+<body>
+    <div class="header">
+        <H1>RANDOM PASSWORD GENERATOR</H1>
+    </div>
+    <div class="main">
+        <p>Enter the specifications</p>
+        <div>
+            <label for="lengthId">LENGTH</label>
+            <input id="lengthId" type="number">
+        </div>
+        <div>
+            <label for="checkbox1">ALPHABETS</label>
+            <input type="checkbox" id="checkbox1">
+        </div>
+        <div>
+            <label for="checkbox2">NUMBERS</label>
+            <input type="checkbox" id="checkbox2">
+        </div>
+        <div>
+            <label for="checkbox3">SPECIAL CHARACTERS</label>
+            <input type="checkbox" id="checkbox3">
+        </div>
+        <div>
+        <button onclick="generatePassword()">Generate Password</button>
+    </div>
+        <div> GENERATED PASSWORD:
+        <div id="generatedPassword" class="generatedPassword"></div>
+    </div>
+
+        <script>
+            function generatePassword() {
+                let password = "";
+                const s = "qwertyuiopasdfghklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+                const num = "1234567890";
+                const sp = "!@#$%^&*()~";
+                let x = "";
+                if(document.getElementById("checkbox1").checked){
+                    x+=s;
+                }
+                if(document.getElementById("checkbox2").checked){
+                    x+=num;
+                }
+                if(document.getElementById("checkbox3").checked){
+                    x+=sp;
+                }
+                let l = document.getElementById("lengthId").value;
+                if(l<8){
+                    document.getElementById("generatedPassword").innerHTML = "PASSWORD MUST CONTAIN 8 LETTERS";
+                }
+                else{
+                for (let i = 0; i < l; i++) {
+                    let randomIndex = Math.floor(Math.random() * x.length);
+                    password += x.charAt(randomIndex);
+                }
+                console.log(password);
+                document.getElementById("generatedPassword").innerHTML = password;
+            }
+
+            }
+
+        </script>
+    </div>
+    </div>
+
+</body>
+
+</html>
